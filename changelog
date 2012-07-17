@@ -1,3 +1,7 @@
+master
+- aeosynth
+  Markdown (doesn't work on /g/, for some completely and totally unknown reason)
+  
 2.34.4
 - noface
   Remove redundant entries from the updater
