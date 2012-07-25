@@ -2343,7 +2343,7 @@ Updater =
     html += "
 	<div><label title='Controls whether *this* thread automatically updates or not'>Auto Update This<input name='Auto Update This' type=checkbox #{checked}></label></div>
 	<div><label>Interval (s)<input name=Interval value=#{Conf['Interval']} class=field size=4></label></div>
-	<div><input value='Update Now' type=button></div>"
+	<div><input value='Update Now' type=button name='Update Now'></div>"
 
     dialog = UI.dialog 'updater', 'bottom: 0; right: 0;', html
 
