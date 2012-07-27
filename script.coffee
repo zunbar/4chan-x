@@ -2505,7 +2505,7 @@ Updater =
       Updater.update()
     else if n is Updater.retryCoef
       Updater.retryCoef += 10 * (Updater.retryCoef < 120)
-      Updater.retry()
+      Updater.retryCoef()
     else
       Updater.timer.textContent = n
 
