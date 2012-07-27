@@ -167,7 +167,6 @@ Config =
       'Verbose':     [true,  'Show countdown timer, new post count']
       'Auto Update': [true,  'Automatically fetch new posts']
     'Interval': 30
-    'Max Interval': 10
 
 Conf = {}
 d = document
@@ -2383,23 +2382,9 @@ Updater =
   cb:
     post: ->
       return unless Conf['Auto Update This']
-      Updater.unsuccessfulFetchCount = 0
-      setTimeout Updater.update, 100
-    visibility: ->
-      state = d.visibilityState or d.oVisibilityState or d.mozVisibilityState or d.webkitVisibilityState
-      return if state isnt 'visible'
-      # Reset the counter when we focus this tab.
-      Updater.unsuccessfulFetchCount = 0
-      if Updater.timer.textContent < -Conf['Interval']
-        Updater.timer.textContent = -Updater.getInterval()
     interval: ->
       val = parseInt @value, 10
       @value = if val > 0 then val else 30
-      $.cb.value.call @
-      Updater.timer.textContent = -Updater.getInterval()
-    maxInterval: ->
-      val = parseInt @value, 10
-      @value = if val > 180 then val else 180
       $.cb.value.call @
     verbose: ->
       if Conf['Verbose']
@@ -2473,29 +2458,20 @@ Updater =
         Updater.count.textContent = "+#{count}"
         Updater.count.className   = if count then 'new' else null
 
+      count  = nodes.length
+      scroll = Conf['Scrolling'] && Updater.scrollBG() && count &&
+        lastPost.getBoundingClientRect().bottom - d.documentElement.clientHeight < 25
+      if Conf['Verbose']
+        Updater.count.textContent = "+#{count}"
+        Updater.count.className   = if count then 'new' else null
+
       if lastPost = nodes[0]
         Updater.lastPost = lastPost
 
-      return unless count
 
-      Updater.unsuccessfulFetchCount = 0
-      Updater.timer.textContent = -Updater.getInterval()
-      scroll = Conf['Scrolling'] && Updater.scrollBG() &&
-        Updater.thread.getBoundingClientRect().bottom - d.documentElement.clientHeight < 25
       $.add Updater.thread, nodes.reverse()
       if scroll
         lastPost.scrollIntoView()
-
-  getInterval: ->
-    min = +Conf['Interval']
-    max = +Conf['Max Interval']
-    now = 1 * Math.pow 2, @unsuccessfulFetchCount
-    if min > now
-      min
-    else if max < now
-      max
-    else
-      now
 
   timeout: ->
     Updater.timeoutID = setTimeout Updater.timeout, 1000
@@ -2518,7 +2494,6 @@ Updater =
       headers: 'If-Modified-Since': Updater.lastModified
 
   updateReset: ->
-    Updater.unsuccessfulFetchCount = 0
     Updater.update()
 
 Watcher =
