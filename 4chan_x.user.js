@@ -4919,17 +4919,13 @@
       return this.dialog();
     },
     node: function(post) {
-      var a, img;
-      img = post.img;
+      var a;
       if (!post.img) {
         return;
       }
       a = post.img.parentNode;
       $.on(a, 'click', ImageExpand.cb.toggle);
-      if (img.alt.match(/^Spoiler/)) {
-        console.log("spoilered: " + post);
-      }
-      if (ImageExpand.on && !post.el.hidden && (img.alt.match(/^Spoiler/ !== true))) {
+      if (ImageExpand.on && !post.el.hidden) {
         return ImageExpand.expand(post.img);
       }
     },

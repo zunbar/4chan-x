@@ -3846,12 +3846,10 @@ ImageExpand =
     @dialog()
 
   node: (post) ->
-    {img} = post
     return unless post.img
     a = post.img.parentNode
     $.on a, 'click', ImageExpand.cb.toggle
-    console.log "spoilered: #{post}" if img.alt.match /^Spoiler/
-    if ImageExpand.on and !post.el.hidden and (img.alt.match /^Spoiler/ isnt true)
+    if ImageExpand.on and !post.el.hidden
       ImageExpand.expand post.img
   cb:
     toggle: (e) ->
