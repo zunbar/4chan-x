@@ -3102,7 +3102,7 @@
         return Updater.update();
       } else if (n === Updater.retryCoef) {
         Updater.retryCoef += 10 * (Updater.retryCoef < 120);
-        return Updater.retryCoef();
+        return Updater.retry();
       } else {
         return Updater.timer.textContent = n;
       }
