@@ -2485,6 +2485,11 @@ Updater =
     else
       Updater.timer.textContent = n
 
+  retry: ->
+    @count.textContent = 'Retry'
+    @count.className = null
+    @update()
+
   update: ->
     Updater.timer.textContent = 0
     Updater.request?.abort()

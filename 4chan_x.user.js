@@ -3107,6 +3107,11 @@
         return Updater.timer.textContent = n;
       }
     },
+    retry: function() {
+      this.count.textContent = 'Retry';
+      this.count.className = null;
+      return this.update();
+    },
     update: function() {
       var url, _ref;
       Updater.timer.textContent = 0;
