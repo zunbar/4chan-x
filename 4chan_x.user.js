@@ -4766,7 +4766,6 @@
     image: function(board, filename) {
       switch (board) {
         case 'a':
-        case 'jp':
         case 'm':
         case 'sp':
         case 'tg':
@@ -4806,7 +4805,6 @@
       switch (board) {
         case 'a':
         case 'co':
-        case 'jp':
         case 'm':
         case 'sp':
         case 'tg':
