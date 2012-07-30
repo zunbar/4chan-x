@@ -1,16 +1,14 @@
 master
 - aeosynth
   Markdown (doesn't work on /g/, for some completely and totally unknown reason)
-  
-2.34.4
-- noface
-  Remove redundant entries from the updater
 
 2.34.3
 - Mayhem
   Update /k/ archive redirection.
 - seaweedchan
   Fix updater hanging
+- noface
+  Remove redundant entries from the updater
 
 2.34.2
 - noface
