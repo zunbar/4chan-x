@@ -4040,8 +4040,6 @@
         }
         if (Conf['Quote Inline']) {
           $.on(link, 'click', QuoteInline.toggle);
-        } else {
-          link.setAttribute('onclick', "replyhl('" + post.ID + "');");
         }
         if (!(container = $.id("blc" + qid))) {
           container = $.el('span', {
@@ -4336,7 +4334,6 @@
           if (board === g.BOARD && $.id("p" + id)) {
             a.href = "#p" + id;
             a.className = 'quotelink';
-            a.setAttribute('onclick', "replyhl('" + id + "');");
           } else {
             a.href = Redirect.thread(board, 0, id);
             a.className = 'deadlink';
