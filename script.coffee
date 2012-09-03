@@ -3826,6 +3826,8 @@ Redirect =
         "//archive.foolz.us/#{board}/full_image/#{filename}"
       when 'u'
         "//nsfw.foolz.us/#{board}/full_image/#{filename}"
+      when 'ck', 'lit'
+        "//fuuka.warosu.org/#{board}/full_image/#{filename}"
       when 'cgl', 'g', 'w'
         "//archive.rebeccablacktech.com/#{board}/full_image/#{filename}"
       when 'an', 'k', 'toy', 'x'
