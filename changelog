@@ -6,6 +6,7 @@ master
   Use 4chan's API to fetch posts for:
     - Quote Inlining.
     - Quote Previewing.
+    - Thread Expansion.
     - Comment Expansion.
 
 2.34.10
