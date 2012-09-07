@@ -3170,7 +3170,7 @@ Build =
       if file.isSpoiler
         fileSize = "Spoiler Image, #{fileSize}"
         unless isArchived
-          fileThumb = '//thumbs.4chan.org/image/spoiler'
+          fileThumb = '//static.4chan.org/image/spoiler'
           fileThumb += switch board
             # UGGH, I can't wait to maintain this crap.
             # Sup desuwa?
@@ -3197,7 +3197,7 @@ Build =
       filename = a.textContent.replace /%22/g, '"'
 
       # shorten filename, get html
-      a.textContent = Build.shortname filename
+      a.textContent = Build.shortFilename filename
       shortFilename = a.innerHTML
 
       # get html
