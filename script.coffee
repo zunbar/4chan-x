@@ -4956,6 +4956,9 @@ h1 {
 .qphl {
   outline: 2px solid rgba(216, 94, 49, .7);
 }
+.quotelink.deadlink {
+  text-decoration: underline !important;
+}
 .inlined {
   opacity: .5;
 }
