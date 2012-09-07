@@ -3063,6 +3063,9 @@ Build =
       date:     data.now
       dateUTC:  data.time
       comment:  data.com
+      # thread status
+      isSticky: !!data.sticky
+      isClosed: !!data.closed
       # file
     if data.ext or data.filedeleted
       o.file =
@@ -3087,6 +3090,7 @@ Build =
     {
       postID, threadID, board
       name, capcode, tripcode, uniqueID, email, subject, flagCode, flagName, date, dateUTC
+      isSticky, isClosed
       comment
       file
     } = o
@@ -3204,6 +3208,17 @@ Build =
       else
         ''
 
+    sticky =
+      if isSticky
+        ' <img src=//static.4chan.org/image/sticky.gif alt=Sticky title=Sticky style="height:16px;width:16px">'
+      else
+        ''
+    closed =
+      if isClosed
+        ' <img src=//static.4chan.org/image/closed.gif alt=Closed title=Closed style="height:16px;width:16px">'
+      else
+        ''
+
     container = $.el 'div',
       id: "pc#{postID}"
       className: "postContainer #{if isOP then 'op' else 'reply'}Container"
@@ -3215,7 +3230,7 @@ Build =
           "<span class='nameBlock#{capcodeClass}'>" +
             emailStart +
               "<span class=name>#{name}</span>" + tripcode +
-            emailEnd + capcodeStart + capcode + userID + flag +
+            emailEnd + capcodeStart + capcode + userID + flag + sticky + closed +
             "<br><span class=subject>#{subject}</span>" +
           "</span><span class='dateTime postNum' data-utc=#{dateUTC}>#{date}" +
           '<br><em>' +
@@ -3237,7 +3252,7 @@ Build =
           "<span class='nameBlock#{capcodeClass}'>" +
             emailStart +
               "<span class=name>#{name}</span>" + tripcode +
-            emailEnd  + capcodeStart + capcode + userID + flag +
+            emailEnd  + capcodeStart + capcode + userID + flag + sticky + closed +
           ' </span> ' +
           "<span class=dateTime data-utc=#{dateUTC}>#{date}</span> " +
           "<span class='postNum desktop'>" +
