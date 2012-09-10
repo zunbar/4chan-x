@@ -875,14 +875,15 @@ ExpandComment =
       return
 
     bq = $.id "m#{replyID}"
-    bq.innerHTML = post.com
-    quotes = bq.getElementsByClassName 'quotelink'
+    clone = bq.cloneNode false
+    clone.innerHTML = post.com
+    quotes = clone.getElementsByClassName 'quotelink'
     for quote in quotes
       href = quote.getAttribute 'href'
       continue if href[0] is '/' # Cross-board quote
       quote.href = "res/#{href}" # Fix pathnames
     post =
-      blockquote: bq
+      blockquote: clone
       threadID:   threadID
       quotes:     quotes
       backlinks:  []
@@ -896,7 +897,8 @@ ExpandComment =
       QuoteOP.node      post
     if Conf['Indicate Cross-thread Quotes']
       QuoteCT.node      post
-    Main.prettify bq
+    $.replace bq, clone
+    Main.prettify clone
 
 ExpandThread =
   init: ->
