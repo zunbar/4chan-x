@@ -3809,6 +3809,7 @@
         email: encodeURIComponent(data.email),
         subject: data.title_processed,
         flagCode: data.poster_country,
+        flagName: data.poster_country_name_processed,
         date: data.fourchan_date,
         dateUTC: data.timestamp,
         comment: comment
