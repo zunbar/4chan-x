@@ -3292,7 +3292,7 @@ Build =
 
         (if isOP then '' else fileHTML) +
 
-        "<blockquote class=postMessage id=m#{postID}>#{comment}</blockquote> " +
+        "<blockquote class=postMessage id=m#{postID}>#{comment or ''}</blockquote> " +
 
       '</div>'
 
