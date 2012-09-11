@@ -735,7 +735,7 @@ Filter =
   filesize: (post) ->
     {img} = post
     if img
-      return img.alt
+      return img.alt.replace 'Spoiler Image, ', ''
     false
   md5: (post) ->
     {img} = post
@@ -3028,7 +3028,7 @@ Get =
     root
   title: (thread) ->
     op = $ '.op', thread
-    el = $ '.subject', op
+    el = $ '.postInfo .subject', op
     unless el.textContent
       el = $ 'blockquote', op
       unless el.textContent

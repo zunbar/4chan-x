@@ -948,7 +948,7 @@
       var img;
       img = post.img;
       if (img) {
-        return img.alt;
+        return img.alt.replace('Spoiler Image, ', '');
       }
       return false;
     },
@@ -3871,7 +3871,7 @@
     title: function(thread) {
       var el, op, span;
       op = $('.op', thread);
-      el = $('.subject', op);
+      el = $('.postInfo .subject', op);
       if (!el.textContent) {
         el = $('blockquote', op);
         if (!el.textContent) {
