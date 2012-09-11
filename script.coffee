@@ -4998,6 +4998,9 @@ h1 {
 .quotelink.deadlink {
   text-decoration: underline !important;
 }
+.deadlink:not(.quotelink) {
+  text-decoration: none !important;
+}
 .inlined {
   opacity: .5;
 }
