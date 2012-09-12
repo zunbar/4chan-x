@@ -416,7 +416,7 @@
       style = $.el('style', {
         textContent: css
       });
-      $.add(d.head, style);
+      $.add(d.head || d.documentElement, style);
       return style;
     },
     x: function(path, root) {
@@ -5423,7 +5423,7 @@
       if (Conf['Recursive Filtering']) {
         Main.css += '.hidden + .threadContainer { display: none; }';
       }
-      Main.addStyle();
+      $.addStyle(Main.css);
       if (Conf['Filter']) {
         Filter.init();
       }
