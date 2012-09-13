@@ -2585,7 +2585,7 @@
       }));
     },
     submit: function(e) {
-      var callbacks, captcha, captchas, challenge, err, m, opts, post, reply, response, rpc, textOnly, threadID, _base, _ref;
+      var callbacks, captcha, captchas, challenge, err, m, opts, post, reply, response, textOnly, threadID, _base, _ref;
       if (e != null) {
         e.preventDefault();
       }
@@ -2626,6 +2626,11 @@
         QR.captcha.count(captchas.length);
         if (!response) {
           err = 'No valid captcha.';
+        } else {
+          response = response.trim();
+          if (!/\s/.test(response)) {
+            response = "" + response + " " + response;
+          }
         }
       }
       if (err) {
@@ -2645,7 +2650,6 @@
       QR.status({
         progress: '...'
       });
-      rpc = response.replace(/^\s+/, '').replace(/\s+$/, '');
       post = {
         resto: threadID,
         name: reply.name,
@@ -2658,7 +2662,7 @@
         mode: 'regist',
         pwd: (m = d.cookie.match(/4chan_pass=([^;]+)/)) ? decodeURIComponent(m[1]) : $('input[name=pwd]').value,
         recaptcha_challenge_field: challenge,
-        recaptcha_response_field: rpc + ' ' + rpc
+        recaptcha_response_field: response
       };
       try {
         if (typeof (_base = console.log).bind === "function") {
